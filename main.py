@@ -69,25 +69,25 @@ ta tâche est :
     solution_text = solution.group(1).strip() if solution else ""
 
     # --- Connexion MySQL ---
-    try:
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",       # adapte selon ta config
-            password="",       # ton mot de passe MySQL
-            database="chatbot_db"
-        )
-        cursor = conn.cursor()
+    # try:
+    #     conn = mysql.connector.connect(
+    #         host="localhost",
+    #         user="root",       # adapte selon ta config
+    #         password="",       # ton mot de passe MySQL
+    #         database="chatbot_db"
+    #     )
+    #     cursor = conn.cursor()
 
-        sql = "INSERT INTO incidents (incident, cause_probable, categorie, solution) VALUES (%s, %s, %s, %s)"
-        values = (req.incident, cause_text, categorie_text, solution_text)
-        cursor.execute(sql, values)
-        conn.commit()
+    #     sql = "INSERT INTO incidents (incident, cause_probable, categorie, solution) VALUES (%s, %s, %s, %s)"
+    #     values = (req.incident, cause_text, categorie_text, solution_text)
+    #     cursor.execute(sql, values)
+    #     conn.commit()
 
 
-        cursor.close()
-        conn.close()
-    except Exception as db_error:
-        return {"error": f"Erreur lors de l'insertion en DB : {db_error}"}
+    #     cursor.close()
+    #     conn.close()
+    # except Exception as db_error:
+    #     return {"error": f"Erreur lors de l'insertion en DB : {db_error}"}
 
     return {
         "cause_probable": cause_text,
